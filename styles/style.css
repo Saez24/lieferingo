@@ -22,23 +22,6 @@ body {
     font-style: normal;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 82px;
-}
-
-footer {
-    height: 200px;
-    background-color: gray;
-}
-
-.separator {
-    background-color: black;
-    height: 1px;
-}
-
 .logo img {
     height: 50px;
     margin-left: 10px;
@@ -59,65 +42,9 @@ footer {
 }
 
 .content {
-    width: 75%;
+    width: 70%;
     background-color: rgb(252, 252, 252);
     height: 2000px;
-}
-
-.shoppingbasket {
-    position: sticky;
-    width: 25%;
-    height: 100vh;
-    background-color: white;
-    top: 0px;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    align-items: center;
-}
-
-.delivery {
-    display: flex;
-    border: 1px solid;
-    border-radius: 22px;
-    color: black;
-    height: 45px;
-    align-items: center;
-    width: 75%;
-    justify-content: space-between;
-    background-color: rgb(236, 234, 234);
-    cursor: pointer;
-}
-
-.delivery span {
-    font-size: 10px;
-}
-
-.delivery h6 {
-    margin: 0;
-}
-
-.deliveryselection1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid;
-    border-radius: 22px;
-    color: black;
-    background-color: white;
-    width: 50%;
-    height: 98%;
-    justify-content: center;
-}
-
-.deliveryselection2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: black;
-    width: 50%;
-    height: 98%;
-    justify-content: center;
 }
 
 .contentimage img {
@@ -135,6 +62,7 @@ footer {
 
 .company img {
     height: 28px;
+    cursor: pointer;
 }
 
 .menus {
@@ -169,6 +97,7 @@ footer {
     align-items: center;
     padding-left: 25px;
     padding-right: 10px;
+    margin-top: 10px;
 }
 
 .favorite2 img {
@@ -192,7 +121,9 @@ footer {
     height: auto;
     margin-left: 20px;
     margin-right: 20px;
+    margin-top: 20px;
 }
+
 
 .dialog-bg {
     background-color: rgba(0, 0, 0, 0.2);
@@ -219,14 +150,14 @@ footer {
     flex-direction: column;
     height: 769px;
     line-height: 20px;
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
     max-height: calc(100% - 160px);
     max-width: 600px;
     min-height: 196px;
     opacity: 1;
     position: relative;
     text-rendering: optimizelegibility;
-    top: 80px;
+    /* top: 80px;
     /* transform: matrix(1, 0, 0, 1, 0, 0);
     transition-behavior: normal, normal, normal;
     transition-delay: 0s, 0s, 0s;
@@ -253,26 +184,16 @@ footer {
     display: none;
 }
 
-.dialogheader {
-    height: 80px;
-    background-color: white;
-    padding: 15px;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-}
-
-.priceheader {
-    height: 40px;
-    background-color: white;
-    padding-left: 15px;
-}
-
 .ingredientselection {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding-left: 20px;
+}
 
+.ingredientsbox {
+    height: 700px;
+    overflow: auto;
 }
 
 .ingredientselection span {
@@ -291,7 +212,7 @@ footer {
     height: 40px;
 }
 
-/* Customize the label (the container) */
+/* The container */
 .checkbox {
     display: block;
     position: relative;
@@ -302,6 +223,7 @@ footer {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    margin-top: 20px;
 }
 
 /* Hide the browser's default checkbox */
@@ -314,12 +236,13 @@ footer {
 }
 
 /* Create a custom checkbox */
-.checkbox {
+.checkmark {
     position: absolute;
-    top: 270px;
-    left: 20px;
-    /* height: 25px;
-    width: 25px; */
+    top: 0;
+    left: 0;
+    height: 21px;
+    width: 22px;
+    background-color: #ffffff;
 }
 
 /* On mouse-over, add a grey background color */
@@ -355,4 +278,10 @@ footer {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+.dialogfootercontent {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }

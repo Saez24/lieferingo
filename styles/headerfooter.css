@@ -1,0 +1,64 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 82px;
+}
+
+footer {
+    height: 200px;
+    background-color: gray;
+}
+
+.separator {
+    background-color: black;
+    height: 1px;
+}
+
+.dialogheader {
+    height: 80px;
+    background-color: white;
+    padding: 15px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+}
+
+.dialogfooter {
+    position: absolute;
+    bottom: 0px;
+    height: 100px;
+    background-color: white;
+    padding: 15px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    right: 0;
+    left: 0;
+}
+
+.dialogsum {
+    background-color: #2196F3;
+    height: 50px;
+    width: 60%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 36px;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.dialogfootercontent svg {
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+}
+
+.priceheader {
+    height: 40px;
+    background-color: white;
+    padding-left: 15px;
+}

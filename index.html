@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/shoppingbasket.css">
+    <link rel="stylesheet" href="./styles/headerfooter.css">
     <script src="./scripts/script.js"></script>
     <title>Lieferingo</title>
 </head>
@@ -54,16 +56,16 @@
                 <h2>Beliebt</h2><img src="./img/logos/heart-red.png" alt="">
             </div>
             <div onclick="openDialog()" id="foodcontent" class="foodcontent">
-                <h2>Pizza Marghareta [Groß, Ø 32cm]</h2>
-                <span>Wahl aus: Pizza Geschnitten, Pizza ingeschnitten, mit Dinkel-Vollkornteig (mit Olivenöl), mit
+                <h3>Pizza Marghareta [Groß, Ø 32cm]</h3>
+                <span>Wahl aus: Pizza geschnitten, Pizza ingeschnitten, mit Dinkel-Vollkornteig (mit Olivenöl), mit
                     Ananas, mit Avocado
-                    und Mehr</span>
-                <h2>11,50 €</h2>
+                    und Mehr</span><br>
+                <h5>11,50 €</h5>
 
             </div>
         </div>
         <div class="shoppingbasket">
-            <h1>Warenkorb</h1>
+            <h3>Warenkorb</h3>
             <div class="delivery">
                 <div class="deliveryselection1">
                     <h6>Lieferung</h6>
@@ -74,7 +76,44 @@
                     <span>ab 11:15</span>
                 </div>
             </div>
+            <div class="products">
+                <span>1</span>
+                <span><u><b>Pizza Marghareta [Groß, Ø 32cm]</b></u></span><span>17,20 €</span>
+            </div>
+            <div class="productsdescription"><span>Pizza geschnitten, mit Dinkel-Vollkornteig (mit
+                    Olivenöl),
+                    mit
+                    Ananas</span>
+            </div>
+            <div class="addproduct">
+                <span><u>Anmerkung<br>hinzufügen</u></span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-plus-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                </svg>
+                <h3>1</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-dash-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+                </svg>
+            </div>
+            <div class="priceinfo">
+                <div class="priceinfodescription">
+                    <span>Zwischensumme</span>
+                    <span>Lieferkosten</span>
+                    <span><b>Gesamt</b></span>
+                </div>
+                <div class="pricecalculation">
+                    <span>17,20 €</span>
+                    <span>0,80 €</span>
+                    <span><b>18,00 €</b></span>
+                </div>
 
+            </div>
+            <div class="checkoutsum"> <b>Bezahlen (18,00 €)</b></div>
         </div>
     </section>
     <div id="dialog" class="dialog-bg d_none">
@@ -84,28 +123,44 @@
             <div class="dialogheader">
                 <h3>Pizza Marghareta [Groß, Ø 32cm]</h3>
             </div>
-            <div class="priceheader">
-                <h5>11,50 €</h5>
-            </div>
-            <div class="ingredientselection">
-                <span>Dein Zubereitungswusch</span>
-                <div class="custom-select">
-                    <select>
-                        <option value="0">Pizza geschnitten</option>
-                        <option value="1">Pizza ungeschnitten</option>
-                    </select>
+            <section class="ingredientsbox">
+                <div class="priceheader">
+                    <h5>11,50 €</h5>
                 </div>
-                <div>
-                    <span>Ihr Teig</span>
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        <span class="checkmark">mit Dinkel-Vollkornteig (mit Olivenöl) (+3,00 €)</span>
-                    </label>
+                <div class="ingredientselection">
+                    <span>Dein Zubereitungswusch</span>
+                    <div class="custom-select">
+                        <select>
+                            <option value="0">Pizza geschnitten</option>
+                            <option value="1">Pizza ungeschnitten</option>
+                        </select>
+                    </div>
+                    <div>
+                        <span>Ihr Teig</span>
+                        <label class="checkbox">mit Dinkel-Vollkornteig (mit Olivenöl) (+3,00 €)
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
                 </div>
+            </section>
+            <div class="dialogfooter">
+                <div class="dialogfootercontent">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path
+                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                    </svg>
+                    <h3>1</h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-dash-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+                    </svg>
 
-            </div>
-            <div class="dialogcontent">
-
+                    <div class="dialogsum">11,50 €</div>
+                </div>
             </div>
         </div>
     </div>
