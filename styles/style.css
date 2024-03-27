@@ -1,7 +1,25 @@
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto';
+    font-style: bold;
+    font-weight: 700;
+    src: url('../fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+
 html,
 body {
     margin: 0;
     margin-top: 10px;
+    font-family: "Roboto";
+    font-style: normal;
 }
 
 .header {
@@ -41,14 +59,88 @@ footer {
 }
 
 .content {
-    width: 70%;
-    background-color: aqua;
+    width: 75%;
+    background-color: rgb(252, 252, 252);
+    height: 2000px;
 }
 
 .shoppingbasket {
     position: sticky;
-    width: 30%;
+    width: 25%;
     height: 100vh;
     background-color: white;
     top: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.contentimage img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.company {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    align-items: center;
+}
+
+.company img {
+    height: 28px;
+}
+
+.menus {
+    display: flex;
+    align-items: center;
+    overflow: auto;
+    white-space: nowrap;
+    gap: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 50px;
+}
+
+.favorite {
+    display: flex;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 2px;
+    border-radius: 15px;
+    padding-left: 12px;
+    padding-right: 10px;
+}
+
+.favorite img {
+    height: 20px;
+    padding-left: 5px;
+}
+
+.favorite2 {
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    padding-right: 10px;
+}
+
+.favorite2 img {
+    height: 26px;
+    padding-left: 5px;
+}
+
+.foodcontent {
+    border: 1px solid;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 96%;
+    margin: auto;
+    padding: 12px;
+    cursor: pointer;
 }
