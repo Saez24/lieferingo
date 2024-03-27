@@ -81,7 +81,7 @@ footer {
     border: 1px solid;
     border-radius: 22px;
     color: black;
-    height: 40px;
+    height: 45px;
     align-items: center;
     width: 75%;
     justify-content: space-between;
@@ -93,7 +93,7 @@ footer {
     font-size: 10px;
 }
 
-.delivery h4 {
+.delivery h6 {
     margin: 0;
 }
 
@@ -106,7 +106,7 @@ footer {
     color: black;
     background-color: white;
     width: 50%;
-    height: 94%;
+    height: 98%;
     justify-content: center;
 }
 
@@ -116,7 +116,7 @@ footer {
     align-items: center;
     color: black;
     width: 50%;
-    height: 94%;
+    height: 98%;
     justify-content: center;
 }
 
@@ -192,4 +192,167 @@ footer {
     height: auto;
     margin-left: 20px;
     margin-right: 20px;
+}
+
+.dialog-bg {
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog {
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    box-sizing: border-box;
+    color: rgb(36, 46, 48);
+    background-color: rgb(236, 234, 234);
+    display: flex;
+    flex-direction: column;
+    height: 769px;
+    line-height: 20px;
+    margin-bottom: 40px;
+    max-height: calc(100% - 160px);
+    max-width: 600px;
+    min-height: 196px;
+    opacity: 1;
+    position: relative;
+    text-rendering: optimizelegibility;
+    top: 80px;
+    /* transform: matrix(1, 0, 0, 1, 0, 0);
+    transition-behavior: normal, normal, normal;
+    transition-delay: 0s, 0s, 0s;
+    transition-duration: 0.25s, 0.25s, 0.25s;
+    transition-property: transform, opacity, transform;
+    transition-timing-function: cubic-bezier(0.45, 0, 0.55, 1), cubic-bezier(0.45, 0, 0.55, 1), cubic-bezier(0.45, 0, 0.55, 1); */
+    width: 600px;
+    z-index: 4006;
+
+}
+
+.dialog button {
+    position: absolute;
+    top: 15px;
+    right: 2%;
+    width: 50px;
+}
+
+.dialog h1 {
+    margin-top: 0px;
+}
+
+.d_none {
+    display: none;
+}
+
+.dialogheader {
+    height: 80px;
+    background-color: white;
+    padding: 15px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.priceheader {
+    height: 40px;
+    background-color: white;
+    padding-left: 15px;
+}
+
+.ingredientselection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 20px;
+
+}
+
+.ingredientselection span {
+    padding-top: 20px;
+}
+
+.custom-select {
+    margin-bottom: 30px;
+}
+
+.custom-select select {
+    width: 94%;
+    border-radius: 10px;
+    padding-left: 10px;
+    margin-top: 10px;
+    height: 40px;
+}
+
+/* Customize the label (the container) */
+.checkbox {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkbox {
+    position: absolute;
+    top: 270px;
+    left: 20px;
+    /* height: 25px;
+    width: 25px; */
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="./scripts/script.js"></script>
     <title>Lieferingo</title>
 </head>
@@ -52,7 +53,7 @@
             <div class="favorite2">
                 <h2>Beliebt</h2><img src="./img/logos/heart-red.png" alt="">
             </div>
-            <div id="foodcontent" class="foodcontent">
+            <div onclick="openDialog()" id="foodcontent" class="foodcontent">
                 <h2>Pizza Marghareta [Groß, Ø 32cm]</h2>
                 <span>Wahl aus: Pizza Geschnitten, Pizza ingeschnitten, mit Dinkel-Vollkornteig (mit Olivenöl), mit
                     Ananas, mit Avocado
@@ -65,17 +66,49 @@
             <h1>Warenkorb</h1>
             <div class="delivery">
                 <div class="deliveryselection1">
-                    <h4>Lieferung</h4>
+                    <h6>Lieferung</h6>
                     <span>ab 11:45</span>
                 </div>
                 <div class="deliveryselection2">
-                    <h4>Abholung</h4>
+                    <h6>Abholung</h6>
                     <span>ab 11:15</span>
                 </div>
             </div>
 
         </div>
     </section>
+    <div id="dialog" class="dialog-bg d_none">
+        <div id="ingredientselection" class="dialog">
+            <button class="btn btn-outline-primary rounded-circle p-3 lh-1" id="close"
+                onclick="closeDialog()">X</button>
+            <div class="dialogheader">
+                <h3>Pizza Marghareta [Groß, Ø 32cm]</h3>
+            </div>
+            <div class="priceheader">
+                <h5>11,50 €</h5>
+            </div>
+            <div class="ingredientselection">
+                <span>Dein Zubereitungswusch</span>
+                <div class="custom-select">
+                    <select>
+                        <option value="0">Pizza geschnitten</option>
+                        <option value="1">Pizza ungeschnitten</option>
+                    </select>
+                </div>
+                <div>
+                    <span>Ihr Teig</span>
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        <span class="checkmark">mit Dinkel-Vollkornteig (mit Olivenöl) (+3,00 €)</span>
+                    </label>
+                </div>
+
+            </div>
+            <div class="dialogcontent">
+
+            </div>
+        </div>
+    </div>
     <footer></footer>
 </body>
 

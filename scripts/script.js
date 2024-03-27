@@ -10,3 +10,10 @@ let content = [
         'likes': [],
     }
 ];
+
+function openDialog() {
+    document.getElementById('dialog').classList.remove('d_none')
+}
+function closeDialog() {
+    document.getElementById('dialog').classList.add('d_none')
+}
