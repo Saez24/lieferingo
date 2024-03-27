@@ -71,6 +71,52 @@ footer {
     background-color: white;
     top: 0px;
     display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+
+.delivery {
+    display: flex;
+    border: 1px solid;
+    border-radius: 22px;
+    color: black;
+    height: 40px;
+    align-items: center;
+    width: 75%;
+    justify-content: space-between;
+    background-color: rgb(236, 234, 234);
+    cursor: pointer;
+}
+
+.delivery span {
+    font-size: 10px;
+}
+
+.delivery h4 {
+    margin: 0;
+}
+
+.deliveryselection1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 22px;
+    color: black;
+    background-color: white;
+    width: 50%;
+    height: 94%;
+    justify-content: center;
+}
+
+.deliveryselection2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    width: 50%;
+    height: 94%;
     justify-content: center;
 }
 
@@ -135,12 +181,15 @@ footer {
     border-radius: 10px;
     color: black;
     background-color: white;
-    height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 96%;
+    width: auto;
     margin: auto;
-    padding: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
     cursor: pointer;
+    height: auto;
+    margin-left: 20px;
+    margin-right: 20px;
 }
