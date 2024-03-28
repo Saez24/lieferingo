@@ -11,8 +11,8 @@ footer {
 }
 
 .separator {
-    background-color: black;
-    height: 1px;
+    background-color: #f8f9fa;
+    height: 4px;
 }
 
 .dialogheader {

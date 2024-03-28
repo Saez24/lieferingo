@@ -20,6 +20,11 @@ body {
     margin-top: 10px;
     font-family: "Roboto";
     font-style: normal;
+    width: 100%;
+}
+
+h6 {
+    padding-top: 10px;
 }
 
 .logo img {
@@ -42,22 +47,44 @@ body {
 }
 
 .content {
-    width: 70%;
-    background-color: rgb(252, 252, 252);
+    width: 100%;
+    background-color: rgb(244, 244, 244);
     height: 2000px;
+    max-width: calc(100% - 344px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contentimage {
+    width: 100%;
 }
 
 .contentimage img {
-    height: 200px;
+    height: 320px;
     width: 100%;
     object-fit: cover;
+}
+
+.companysection {
+    width: 100%;
+}
+
+.selectionbox {
+    height: 150px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: white;
+    align-items: center;
 }
 
 .company {
     display: flex;
     justify-content: space-between;
-    margin: 20px;
     align-items: center;
+    width: 63%;
 }
 
 .company img {
@@ -74,6 +101,7 @@ body {
     margin-left: 20px;
     margin-right: 20px;
     height: 50px;
+    width: 63%;
 }
 
 .favorite {
@@ -98,6 +126,7 @@ body {
     padding-left: 25px;
     padding-right: 10px;
     margin-top: 10px;
+    width: 65%;
 }
 
 .favorite2 img {
@@ -122,8 +151,13 @@ body {
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
+    width: 65%;
 }
 
+.foodcontent span {
+    font-size: 14px;
+    color: #6c757d;
+}
 
 .dialog-bg {
     background-color: rgba(0, 0, 0, 0.2);
