@@ -64,16 +64,18 @@
 .products {
     margin-top: 30px;
     display: flex;
-    gap: 15px;
+    gap: 10px;
     font-size: 14px;
-    width: 94%;
-    justify-content: space-between;
+    width: 100%;
+    justify-content: center;
+    padding-left: 5px;
 }
 
 .productsdescription {
     margin-top: 30px;
     font-size: 14px;
-    width: 71%;
+    width: 86%;
+    padding-left: 38px;
 }
 
 .addproduct {

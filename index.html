@@ -5,20 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./styles/shoppingbasket.css">
     <link rel="stylesheet" href="./styles/headerfooter.css">
-    <script src="./scripts/script.js"></script>
+    <script src="./scripts/contentscript.js"></script>
+    <script src="./scripts/shoppingbasket.js"></script>
     <title>Lieferingo</title>
 </head>
 
-<body>
+<body onload="render()">
     <section class="header shadow">
         <div class="logo">
             <img src="./img/logos/logo.jpg" alt="logo">
         </div>
         <div>
-            <h4>Speisekarte</h4>
+            <h6><b>Speisekarte</b></h6>
         </div>
         <div class="rightmenu"><img src="./img/logos/germancircle.png" alt=""><img src="./img/logos/menu.png" alt="">
         </div>
@@ -59,12 +61,7 @@
             <div class="favorite2">
                 <h2>Beliebt</h2><img src="./img/logos/heart-red.png" alt="">
             </div>
-            <div onclick="openDialog()" id="foodcontent" class="foodcontent">
-                <h6><b>Pizza Marghareta [Groß, Ø 32cm]</b></h6>
-                <span>Wahl aus: Pizza geschnitten, Pizza ingeschnitten, mit Dinkel-Vollkornteig (mit Olivenöl), mit
-                    Ananas, mit Avocado
-                    und Mehr</span>
-                <h6><b>11,50 €</b></h6>
+            <div id="foodcontent" class="foodselectionbox">
 
             </div>
         </div>
@@ -80,29 +77,8 @@
                     <span>ab 11:15</span>
                 </div>
             </div>
-            <div class="products">
-                <span>1</span>
-                <span><u><b>Pizza Marghareta [Groß, Ø 32cm]</b></u></span><span>17,20 €</span>
-            </div>
-            <div class="productsdescription"><span>Pizza geschnitten, mit Dinkel-Vollkornteig (mit
-                    Olivenöl),
-                    mit
-                    Ananas</span>
-            </div>
-            <div class="addproduct">
-                <span><u>Anmerkung<br>hinzufügen</u></span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-plus-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                    <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                </svg>
-                <h3>1</h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-dash-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
-                </svg>
+            <div id="basketproduct">
+
             </div>
             <div class="priceinfo">
                 <div class="priceinfodescription">
@@ -122,50 +98,7 @@
     </section>
     <div id="dialog" class="dialog-bg d_none">
         <div id="ingredientselection" class="dialog">
-            <button class="btn btn-outline-primary rounded-circle p-3 lh-1" id="close"
-                onclick="closeDialog()">X</button>
-            <div class="dialogheader">
-                <h3>Pizza Marghareta [Groß, Ø 32cm]</h3>
-            </div>
-            <section class="ingredientsbox">
-                <div class="priceheader">
-                    <h5>11,50 €</h5>
-                </div>
-                <div class="ingredientselection">
-                    <span>Dein Zubereitungswusch</span>
-                    <div class="custom-select">
-                        <select>
-                            <option value="0">Pizza geschnitten</option>
-                            <option value="1">Pizza ungeschnitten</option>
-                        </select>
-                    </div>
-                    <div>
-                        <span>Ihr Teig</span>
-                        <label class="checkbox">mit Dinkel-Vollkornteig (mit Olivenöl) (+3,00 €)
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </div>
-            </section>
-            <div class="dialogfooter">
-                <div class="dialogfootercontent">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-plus-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                        <path
-                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                    </svg>
-                    <h3>1</h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-dash-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
-                    </svg>
 
-                    <div class="dialogsum">11,50 €</div>
-                </div>
-            </div>
         </div>
     </div>
     <footer></footer>
