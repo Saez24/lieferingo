@@ -134,6 +134,11 @@ function generateExtrasCheckboxes() {
     }
 };
 
+function closeDialogAndSave() {
+    saveSelection(); // Speichern der aktuellen Auswahl
+    closeDialog(); // Dialog schließen
+}
+
 function closeDialog() {
     document.getElementById('dialog').classList.add('d_none');
 };
@@ -195,7 +200,7 @@ function saveSelection() {
     let selectedSize = selectedSizeText.split(" ")[0];
     let selectedCutIndex = document.getElementById('preparation').selectedIndex;
     let selectedCut = document.getElementById('preparation').options[selectedCutIndex].text;
-    let selectedDough = document.getElementById('dough').checked;
+    let selectedDough = document.getElementById('dough').checked ? 'mit Dinkel-Vollkornteig (mit Olivenöl)' : '';
     let selectedPrice = null;
     let selectedQuantity = document.getElementById('quantity').textContent;
 
@@ -205,11 +210,13 @@ function saveSelection() {
     }
 
     let selectedExtras = [];
-    document.querySelectorAll('.extras').forEach(checkbox => {
-        if (checkbox.checked) {
-            selectedExtras.push(checkbox.value);
-        }
+    let extrasCheckboxes = document.querySelectorAll('.extras:checked');
+    extrasCheckboxes.forEach(checkbox => {
+        let labelText = checkbox.parentNode.textContent.trim();
+        selectedExtras.push(labelText.replace(/\n/g, '').trim());
     });
+
+    let selectedExtrasString = selectedExtras.join(' ');
 
     let selection = {
         pizza: selectedPizza,

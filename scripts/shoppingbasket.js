@@ -1,12 +1,27 @@
-function renderBasket(shoppingBasket) {
+
+let basketIndex = 0;
+
+
+function renderBasket() {
     let ingredientContent = document.getElementById('basketproduct');
     ingredientContent.innerHTML = '';
-    ingredientContent.innerHTML += /*html*/`
+
+    if (localStorage.length === 0) {
+        ingredientContent.innerHTML = '<p>Der Einkaufswagen ist leer.</p>';
+        return;
+    } else {
+
+        for (let i = 0; i < localStorage.length; i++) {
+            for (let i = 0; i < localStorage.length; i++) {
+
+                let basket = JSON.parse(localStorage.getItem('shoppingBasket'))[i];
+
+                ingredientContent.innerHTML += /*html*/`
         <div id class="products">
-            <span>${shoppingBasket['quantity']}</span>
-            <span><u><b>${shoppingBasket['pizza']}</b></u></span><span>15 €</span>
+            <span>${basket['quantity']}</span>
+            <span><u><b>${basket['pizza']}</b></u> ${basket['size']}</span>${basket['sum']}<span></span>
         </div>
-        <div class="productsdescription"><span>25, gesg</span>
+        <div class="productsdescription"><span>${basket['cut']}, ${basket['dough']}, ${basket['extras']}</span>
         </div>
         <div class="addproduct">
             <span><u>Anmerkung<br>hinzufügen</u></span>
@@ -24,22 +39,17 @@ function renderBasket(shoppingBasket) {
             </svg>
         </div>
     `;
-}
-
-function loadShoppingBasket() {
-    let shoppingBasket = localStorage.getItem('shoppingBasket');
-    if (shoppingBasket) {
-        let parsedBasket = JSON.parse(shoppingBasket);
-        renderBasket(parsedBasket); // Hier wird das geparste Objekt direkt an renderBasket übergeben
+            }
+        }
     }
-}
-
+};
 
 function plusQuantityBasket() {
     if (quantity < 5) {
         quantity++;
 
         document.getElementById('quantitybasket').textContent = quantity;
+        localStorage.setItem('shoppingBasket', JSON.stringify(shoppingBasket))[i];
     }
 };
 
@@ -49,6 +59,7 @@ function minusQuantityBasket() {
         quantity--;
 
         document.getElementById('quantitybasket').textContent = quantity;
+        localStorage.setItem('shoppingBasket', JSON.stringify(shoppingBasket));
     }
 };
 
