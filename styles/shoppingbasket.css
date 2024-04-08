@@ -64,18 +64,25 @@
 .products {
     margin-top: 30px;
     display: flex;
-    gap: 10px;
     font-size: 14px;
-    width: 100%;
-    justify-content: center;
-    padding-left: 5px;
+    justify-content: space-between;
+    gap: 10px;
 }
 
+.basketproduct {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+
 .productsdescription {
-    margin-top: 30px;
+    margin-top: 5px;
     font-size: 14px;
-    width: 86%;
-    padding-left: 38px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
 }
 
 .addproduct {

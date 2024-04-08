@@ -14,7 +14,7 @@
     <title>Lieferingo</title>
 </head>
 
-<body onload="render(), renderBasket()">
+<body onload="render(),renderBasket()">
     <section class="header shadow">
         <div class="logo">
             <img src="./img/logos/logo.jpg" alt="logo">
@@ -62,7 +62,7 @@
                 <h2>Beliebt</h2><img src="./img/logos/heart-red.png" alt="">
             </div>
             <div id="foodcontent" class="foodselectionbox">
-
+                <span></span>
             </div>
         </div>
         <div class="shoppingbasket">
@@ -77,7 +77,8 @@
                     <span>ab 11:15</span>
                 </div>
             </div>
-            <div id="basketproduct">
+
+            <div class="basketproduct" id="basketproduct">
 
             </div>
             <div class="priceinfo">
@@ -87,17 +88,70 @@
                     <span><b>Gesamt</b></span>
                 </div>
                 <div class="pricecalculation">
-                    <span>17,20 €</span>
-                    <span>0,80 €</span>
-                    <span><b>18,00 €</b></span>
+                    <span id="basketprice"></span>
+                    <span id="deliveryprice"></span>
+                    <span id="totalprice"><b></b></span>
                 </div>
 
             </div>
-            <div class="checkoutsum"> <b>Bezahlen (18,00 €)</b></div>
+            <div class="checkoutsum"> <b id="checkout">Bezahlen (18,00 €)</b></div>
         </div>
     </section>
-    <div id="dialog" class="dialog-bg d_none">
+    <div onchange="updatePrice()" id="dialog" class="dialog-bg d_none">
         <div id="ingredientselection" class="dialog">
+            <button class="btn btn-outline-primary rounded-circle p-3 lh-1" id="close"
+                onclick="closeDialog()">X</button>
+            <div class="dialogheader" id="pizza">
+                <h3 id="pizzaname"></h3>
+            </div>
+            <section class="ingredientsbox">
+                <div class="priceheader">
+                    <h5 id="priceheader"></h5>
+                </div>
+                <div id="ingredientsbox" class="ingredientselection">
+                    <span>Wähle deine Größe</span>
+                    <div class="custom-select">
+                        <select id="sizeselection">
+                        </select>
+                    </div>
+                    <div>
+                        <span>Dein Zubereitungswusch</span>
+                        <div class="custom-select">
+                            <select id="preparation">
+                            </select>
+                        </div>
+                        <div>
+                            <span><b>Ihr Teig</b></span>
+                            <label class="checkbox">mit Dinkel-Vollkornteig (mit Olivenöl) (+3,00 €)
+                                <input id="dough" type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div>
+                            <b>Ihre Extras + 1,50 €</b>
+                            <div id="extrasCheckBox"></div>
+                        </div>
+                    </div>
+            </section>
+            <div class="dialogfooter">
+                <div class="dialogfootercontent">
+                    <svg onclick="plusQuantity()" id="plus" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path
+                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                    </svg>
+                    <h3 id="quantity">1</h3>
+                    <svg onclick="minusQuantity()" id="minus" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+                    </svg>
+
+                    <div id="selectedPrice" onclick="saveSelection(), renderBasket()" class="dialogsum"> €
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

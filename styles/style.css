@@ -328,3 +328,9 @@ h6 {
     justify-content: space-around;
     align-items: center;
 }
+
+.trash {
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+}
