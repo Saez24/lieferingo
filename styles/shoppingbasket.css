@@ -62,7 +62,7 @@
 }
 
 .products {
-    margin-top: 30px;
+
     display: flex;
     font-size: 14px;
     justify-content: space-between;
@@ -76,6 +76,9 @@
 
 }
 
+.basketcontent {
+    margin-top: 30px;
+}
 
 .productsdescription {
     margin-top: 5px;
@@ -100,8 +103,13 @@
     cursor: pointer;
 }
 
+.priceinfoblock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .priceinfo {
-    margin-top: 40px;
     display: flex;
     margin-top: 40px;
     width: 94%;
@@ -131,4 +139,126 @@
     font-size: 20px;
     cursor: pointer;
     margin-top: 15px;
+}
+
+.mobilebasketcontent {
+    display: none;
+}
+
+@media (max-width:1025px) {
+    .shoppingbasket {
+        display: none;
+    }
+
+    .content {
+        max-width: 100%;
+    }
+
+    .mobilebasketcontent {
+        background-color: white;
+        display: flex;
+        align-items: center;
+        position: sticky;
+        z-index: 999;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: 75px;
+        width: 100%;
+        box-shadow: 0px -3px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .mobilebasket {
+        background-color: #2196F3;
+        height: 50px;
+        width: 98%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 36px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .dialog-bg-mobile {
+        background-color: rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dialog-mobile {
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        box-sizing: border-box;
+        color: rgb(36, 46, 48);
+        background-color: rgb(236, 234, 234);
+        display: flex;
+        height: 50%;
+        line-height: 20px;
+        max-height: calc(100% - 160px);
+        max-width: 600px;
+        min-height: 196px;
+        opacity: 1;
+        position: relative;
+        text-rendering: optimizelegibility;
+        width: 600px;
+        z-index: 4006;
+        align-items: flex-end;
+        justify-content: center;
+        /* top: 80px;
+        /* transform: matrix(1, 0, 0, 1, 0, 0);
+        transition-behavior: normal, normal, normal;
+        transition-delay: 0s, 0s, 0s;
+        transition-duration: 0.25s, 0.25s, 0.25s;
+        transition-property: transform, opacity, transform;
+        transition-timing-function: cubic-bezier(0.45, 0, 0.55, 1), cubic-bezier(0.45, 0, 0.55, 1), cubic-bezier(0.45, 0, 0.55, 1); */
+    }
+
+    .dialog button {
+        position: absolute;
+        top: 15px;
+        right: 2%;
+        width: 50px;
+    }
+
+    .dialog-mobile button {
+        position: absolute;
+        top: 15px;
+        right: 2%;
+        width: 50px;
+    }
+
+    .dialog h1 {
+        margin-top: 0px;
+    }
+
+    .d_none-mobile {
+        display: none;
+    }
+
+    .order {
+        background-color: #2196F3;
+        height: 50px;
+        width: 60%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 36px;
+        font-size: 32px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
 }

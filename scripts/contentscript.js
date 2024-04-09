@@ -202,4 +202,10 @@ function resetDialog() {
     document.getElementById('quantity').textContent = '1';
 };
 
+function openDialogMobile() {
+    document.getElementById('dialog-mobile').classList.remove('d_none-mobile');
+};
 
+function closeDialogMobile() {
+    document.getElementById('dialog-mobile').classList.add('d_none-mobile');
+};

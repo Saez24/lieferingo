@@ -6,8 +6,8 @@ let deliveryPricePerItem = 0.90;
 
 function renderBasket() {
     if (storageBasket.length === 0) {
-        let shoppingbasketContent = document.getElementById('shoppingbasket');
-        shoppingbasketContent.innerText = 'Bitte füllen Sie den Warenkorb.';
+        let basketContent = document.getElementById('basketcontent');
+        basketContent.innerHTML = '<h5>Bitte füllen Sie den Warenkorb.</h5>';
     } else {
         let ingredientContent = document.getElementById('basketproduct');
         ingredientContent.innerHTML = '';

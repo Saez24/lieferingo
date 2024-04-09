@@ -49,7 +49,7 @@ h6 {
 .content {
     width: 100%;
     background-color: rgb(244, 244, 244);
-    height: 2000px;
+    height: 1300px;
     max-width: calc(100% - 344px);
     display: flex;
     flex-direction: column;
@@ -207,7 +207,6 @@ h6 {
     transition-timing-function: cubic-bezier(0.45, 0, 0.55, 1), cubic-bezier(0.45, 0, 0.55, 1), cubic-bezier(0.45, 0, 0.55, 1); */
     width: 600px;
     z-index: 4006;
-
 }
 
 .dialog button {
