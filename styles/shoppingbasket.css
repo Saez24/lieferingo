@@ -98,8 +98,8 @@
 }
 
 .addproduct svg {
-    height: 32px;
-    width: 32px;
+    height: 16px;
+    width: 16px;
     cursor: pointer;
 }
 
@@ -154,32 +154,23 @@
         max-width: 100%;
     }
 
-    .mobilebasketcontent {
-        background-color: white;
+    .mobilebasket {
+        background-color: #2196F3;
         display: flex;
         align-items: center;
+        box-shadow: 0px -3px 8px rgba(0, 0, 0, 0.4);
         position: sticky;
         z-index: 999;
+        height: 50px;
+        width: 98%;
+        cursor: pointer;
+        border-radius: 25px;
+        justify-content: center;
+        color: white;
         left: 0;
         right: 0;
         top: 0;
         bottom: 0;
-        height: 75px;
-        width: 100%;
-        box-shadow: 0px -3px 8px rgba(0, 0, 0, 0.4);
-    }
-
-    .mobilebasket {
-        background-color: #2196F3;
-        height: 50px;
-        width: 98%;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 36px;
-        font-size: 20px;
-        cursor: pointer;
     }
 
     .dialog-bg-mobile {
@@ -202,21 +193,21 @@
         border-top-right-radius: 16px;
         box-sizing: border-box;
         color: rgb(36, 46, 48);
-        background-color: rgb(236, 234, 234);
+        background-color: rgb(252, 252, 252);
         display: flex;
-        height: 50%;
+        height: auto;
         line-height: 20px;
         max-height: calc(100% - 160px);
         max-width: 600px;
-        min-height: 196px;
+        min-height: 40%;
         opacity: 1;
         position: relative;
         text-rendering: optimizelegibility;
         width: 600px;
-        z-index: 4006;
-        align-items: flex-end;
-        justify-content: center;
-        /* top: 80px;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 15px;
         /* transform: matrix(1, 0, 0, 1, 0, 0);
         transition-behavior: normal, normal, normal;
         transition-delay: 0s, 0s, 0s;
@@ -258,7 +249,23 @@
         border-radius: 36px;
         font-size: 32px;
         cursor: pointer;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
+    .mobilebasketproduct {
+        padding: 20px;
+    }
+
+    .priceinfo {
+        display: flex;
+        margin-top: 0 !important;
+        width: 94%;
+        justify-content: space-around;
+        margin-bottom: 10px;
+
+    }
+
+    .addproduct {
+        margin-top: 0px !important;
+    }
 }

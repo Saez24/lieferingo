@@ -203,9 +203,9 @@ function resetDialog() {
 };
 
 function openDialogMobile() {
-    document.getElementById('dialog-mobile').classList.remove('d_none-mobile');
+    document.getElementById('shoppingbasketmobile').classList.remove('d_none-mobile');
 };
 
 function closeDialogMobile() {
-    document.getElementById('dialog-mobile').classList.add('d_none-mobile');
+    document.getElementById('shoppingbasketmobile').classList.add('d_none-mobile');
 };
