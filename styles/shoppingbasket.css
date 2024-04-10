@@ -141,7 +141,7 @@
     margin-top: 15px;
 }
 
-.mobilebasketcontent {
+.mobilebasketbottom {
     display: none;
 }
 
@@ -154,23 +154,30 @@
         max-width: 100%;
     }
 
+    .mobilebasketbottom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: sticky;
+        z-index: 999;
+    }
+
     .mobilebasket {
         background-color: #2196F3;
         display: flex;
         align-items: center;
         box-shadow: 0px -3px 8px rgba(0, 0, 0, 0.4);
-        position: sticky;
-        z-index: 999;
         height: 50px;
         width: 98%;
         cursor: pointer;
         border-radius: 25px;
         justify-content: center;
         color: white;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
+
     }
 
     .dialog-bg-mobile {

@@ -157,47 +157,42 @@
             </div>
         </div>
     </div>
-    <div onclick="openDialogMobile()" class="mobilebasket">
-        <div><b id="checkoutmobile">Wahrenkorb (18,00 €)</b></div>
-    </div>
-    <section id="shoppingbasketmobile" class="mobilebasketcontent d_none-mobile">
-        <div id="dialog-mobile" class="dialog-bg-mobile">
-            <div class="dialog-mobile">
-                <div>
-                    <h3>Ihre Auswahl</h3>
-                </div>
-                <div id="mobilebasketproductscontainer">
-                    <div class="mobilebasketproduct" id="mobilebasketproduct"></div>
-
-                    <div class="mobilepriceinfoblock">
-                        <div id="mobilepriceinfo" class="priceinfo">
-                            <div class="priceinfodescription">
-                                <span>Zwischensumme</span>
-                                <span>Lieferkosten</span>
-                                <span><b>Gesamt</b></span>
-                            </div>
-                            <div class="pricecalculation">
-                                <span id="mobilebasketprice"></span>
-                                <span id="mobiledeliveryprice"></span>
-                                <span id="mobiletotalprice"><b></b></span>
-                            </div>
-
+    <div class="mobilebasketbottom">
+        <div onclick="openDialogMobile()" class="mobilebasket">
+            <div><b id="checkoutmobile">Wahrenkorb (18,00 €)</b></div>
+            <section id="shoppingbasketmobile" class="mobilebasketcontent d_none-mobile">
+                <div id="dialog-mobile" class="dialog-bg-mobile ">
+                    <div class="dialog-mobile">
+                        <div>
+                            <h3>Ihre Auswahl</h3>
                         </div>
-
+                        <div id="mobilebasketproductscontainer">
+                            <div class="mobilebasketproduct" id="mobilebasketproduct"></div>
+                            <div class="mobilepriceinfoblock">
+                                <div id="mobilepriceinfo" class="priceinfo">
+                                    <div class="priceinfodescription">
+                                        <span>Zwischensumme</span>
+                                        <span>Lieferkosten</span>
+                                        <span><b>Gesamt</b></span>
+                                    </div>
+                                    <div class="pricecalculation">
+                                        <span id="mobilebasketprice"></span>
+                                        <span id="mobiledeliveryprice"></span>
+                                        <span id="mobiletotalprice"><b></b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-primary rounded-circle p-3 lh-1" id="closemobile"
+                            onclick="closeDialogMobile()">X</button>
+                        <div class="order">
+                            <h3>Jetzt Bestellen</h3>
+                        </div>
                     </div>
-
                 </div>
-                <button class="btn btn-outline-primary rounded-circle p-3 lh-1" id="closemobile"
-                    onclick="closeDialogMobile()">X</button>
-                <div class="order">
-                    <h3>Jetzt Bestellen</h3>
-
-                </div>
-            </div>
+            </section>
         </div>
-        </div>
-
-    </section>
+    </div>
     <footer></footer>
 </body>
 
