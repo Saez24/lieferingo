@@ -17,11 +17,9 @@
 <body onload="render(),renderBasket(), renderBasketMobile()">
     <section class="header shadow">
         <div class="logo">
-            <img src="./img/logos/logo.jpg" alt="logo">
+            <a href="#"><img src="./img/logos/logo.jpg" alt="logo"></a>
         </div>
-        <div>
-            <h6><b>Speisekarte</b></h6>
-        </div>
+
         <div class="rightmenu"><img src="./img/logos/germancircle.png" alt=""><img src="./img/logos/menu.png" alt="">
         </div>
     </section>
@@ -44,17 +42,17 @@
                         <div class="menu, favorite"><a href="#"></a><span>Beliebt</span><img
                                 src="./img/logos/heart-red.png" alt="">
                         </div>
-                        <div class="menu"><a href="#"></a><span>Mittags-Angebot</span></div>
-                        <div class="menu"><a href="#"></a><span>Salate</span></div>
-                        <div class="menu"><a href="#"></a><span>Pizzabrötchen</span></div>
-                        <div class="menu"><a href="#"></a><span>Pizza</span></div>
-                        <div class="menu"><a href="#"></a><span>Pasta</span></div>
-                        <div class="menu"><a href="#"></a><span>Aufläufe</span></div>
-                        <div class="menu"><a href="#"></a><span>Soucen</span></div>
-                        <div class="menu"><a href="#"></a><span>Kinder-Menüs</span></div>
-                        <div class="menu"><a href="#"></a><span>Desserts</span></div>
-                        <div class="menu"><a href="#"></a><span>Alkoholfreie-Getränke</span></div>
-                        <div class="menu"><a href="#"></a><span>Alkoholische-Getränke</span></div>
+                        <div class="menu"><a href="#">Mittags-Angebot</a></div>
+                        <div class="menu"><a href="#">Salate</a></div>
+                        <div class="menu"><a href="#">Pizzabrötchen</a></div>
+                        <div class="menu"><a href="#">Pizza</a></div>
+                        <div class="menu"><a href="#">Pasta</a></div>
+                        <div class="menu"><a href="#">Aufläufe</a></div>
+                        <div class="menu"><a href="#">Soucen</a></div>
+                        <div class="menu"><a href="#">Kinder-Menüs</a></div>
+                        <div class="menu"><a href="#">Desserts</a><span>Desserts</span></div>
+                        <div class="menu"><a href="#">Alkoholfreie-Getränke</a></div>
+                        <div class="menu"><a href="#">Alkoholische-Getränke</a></div>
                     </div>
                 </div>
             </div>
@@ -109,7 +107,7 @@
             </div>
             <section class="ingredientsbox">
                 <div class="priceheader">
-                    <h5 id="priceheader"></h5>
+                    <h4 id="priceheader"></h4>
                 </div>
                 <div id="ingredientsbox" class="ingredientselection">
                     <span>Wähle deine Größe</span>
@@ -151,7 +149,7 @@
                         <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
                     </svg>
 
-                    <div id="selectedPrice" onclick="saveSelection(), renderBasket()" class="dialogsum"> €
+                    <div id="selectedPrice" onclick="saveSelection(),refreshPage(), renderBasket()" class="dialogsum"> €
                     </div>
                 </div>
             </div>
@@ -184,7 +182,7 @@
                             </div>
                         </div>
                         <button class="btn btn-outline-primary rounded-circle p-3 lh-1" id="closemobile"
-                            onclick="closeDialogMobile()">X</button>
+                            onclick="closeDialogMobile(), refreshPage()">X</button>
                         <div class="order">
                             <h3>Jetzt Bestellen</h3>
                         </div>
@@ -193,7 +191,17 @@
             </section>
         </div>
     </div>
-    <footer></footer>
+    <footer>
+        <div class="footerlinks">
+            <div class="footercontent">
+                <div><a href="#">AGB</a></div>
+                <div><a href="#">Datenschutz</a></div>
+                <div><a href="#">Impressum</a></div>
+            </div>
+            <div>
+                <h6>© 2024 Saez's Pizza</h6>
+            </div>
+    </footer>
 </body>
 
 </html>

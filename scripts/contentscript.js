@@ -15,6 +15,10 @@ let pizzaData = [
 let shoppingBasket = [];
 let quantity = 1;
 
+function refreshPage() {
+    window.location.reload();
+};
+
 function render() {
     let foodContent = document.getElementById('foodcontent');
     foodContent.innerHTML = '';
@@ -27,9 +31,9 @@ function render() {
         pizzas.forEach((pizza, index) => {
             foodContent.innerHTML += /*html*/`
                 <div onclick="openDialog(${index})" class="foodcontent">
-                    <h6><b>${pizza}</b></h6>
+                    <h5><b>${pizza}</b></h5>
                     <span>${selectionText}</span>
-                    <h6><b>ab ${pizzaPrice}</b></h6>
+                    <h5><b>ab ${pizzaPrice}</b></h5>
                 </div>
             `;
         });
