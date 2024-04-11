@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="image/png" sizes="16x16" rel="icon" href="./img/logos/favicon.png">
     <link rel="stylesheet" href="./styles/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -93,7 +94,10 @@
                         </div>
 
                     </div>
-                    <div class="checkoutsum"> <b id="checkout">Bezahlen (18,00 €)</b></div>
+                    <div onclick="localStorage.clear(), refreshPage()" class="checkoutsum"> <a
+                            href="orderconfirmation.html"><b id="checkout">Bezahlen
+                                (18,00 €)</b></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -155,9 +159,9 @@
             </div>
         </div>
     </div>
-    <div class="mobilebasketbottom">
-        <div onclick="openDialogMobile()" class="mobilebasket">
-            <div><b id="checkoutmobile">Wahrenkorb (18,00 €)</b></div>
+    <div id="mobilebasketbottom" class="mobilebasketbottom">
+        <div onclick="openDialogMobile(), deleteTextMobilebasket()" class="mobilebasket">
+            <div><b id="checkoutmobile">Wahrenkorb &nbsp;</b></div>
             <section id="shoppingbasketmobile" class="mobilebasketcontent d_none-mobile">
                 <div id="dialog-mobile" class="dialog-bg-mobile ">
                     <div class="dialog-mobile">
@@ -183,8 +187,10 @@
                         </div>
                         <button class="btn btn-outline-primary rounded-circle p-3 lh-1" id="closemobile"
                             onclick="closeDialogMobile(), refreshPage()">X</button>
-                        <div class="order">
-                            <h3>Jetzt Bestellen</h3>
+                        <div onclick="closeDialogMobile(), localStorage.clear()" class="order">
+                            <a href="orderconfirmation.html">
+                                <h3>Jetzt Bestellen</h3>
+                            </a>
                         </div>
                     </div>
                 </div>

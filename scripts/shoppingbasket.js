@@ -107,7 +107,7 @@ function updateBasketPrice() {
 
     let checkoutElement = document.getElementById('checkout');
     if (checkoutElement) {
-        checkoutElement.innerHTML = `${totalPrice.toFixed(2).replace('.', ',')} €`;
+        checkoutElement.innerHTML = `Jetzt Bestellen ${totalPrice.toFixed(2).replace('.', ',')} €`;
     }
 };
 
@@ -120,7 +120,7 @@ function loadBasketMobile() {
 
 function renderBasketMobile() {
     if (storageBasket.length === 0) {
-        let mobilebasketContent = document.getElementById('mobilebasketproductscontainer');
+        let mobilebasketContent = document.getElementById('shoppingbasketmobile');
         mobilebasketContent.innerHTML = '<h5>Bitte füllen Sie den Warenkorb.</h5>';
     } else {
         let ingredientContent = document.getElementById('mobilebasketproduct');
@@ -152,13 +152,18 @@ function renderBasketMobile() {
     }
 };
 
+function deleteTextMobilebasket() {
+    let mobilebasketContentButton = document.getElementById('checkoutmobile')
+    mobilebasketContentButton.innerHTML = '';
+}
+
 function plusQuantityBasketMobile(i) {
     let basket = storageBasket[i];
     if (basket.quantity < 5) {
         basket.quantity++;
         updateLocalStorage();
         updateBasketPriceMobile();
-        renderBasket();
+        renderBasketMobile();
     }
 };
 
