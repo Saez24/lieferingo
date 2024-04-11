@@ -26,11 +26,13 @@
 }
 
 .delivery span {
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .delivery h6 {
     margin: 0;
+    font-size: 12px;
+    padding-top: 0;
 }
 
 .deliveryselection1 {
@@ -62,22 +64,34 @@
 }
 
 .products {
-
     display: flex;
     font-size: 14px;
-    justify-content: space-between;
+    justify-content: center;
     gap: 10px;
+}
+
+.products img {
+    cursor: pointer;
+    height: 20px;
+}
+
+svg {
+    cursor: pointer;
 }
 
 .basketproduct {
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
+}
 
+.basketproduct h4 {
+    text-align: center;
 }
 
 .basketcontent {
     margin-top: 30px;
+    width: 95%;
 }
 
 .productsdescription {
@@ -86,18 +100,20 @@
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .addproduct {
-    margin-top: 20px;
     display: flex;
     align-items: center;
     flex-direction: row;
     width: 94%;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 15px;
 }
 
-.addproduct svg {
+.addproduct h6 .addproduct svg {
     height: 16px;
     width: 16px;
     cursor: pointer;
@@ -148,6 +164,10 @@
 }
 
 .mobilebasketbottom {
+    display: none !important;
+}
+
+.mobilebasketcontent {
     display: none;
 }
 
@@ -160,8 +180,12 @@
         max-width: 100%;
     }
 
+    .foodcontent {
+        width: 85%;
+    }
+
     .mobilebasketbottom {
-        display: flex;
+        display: flex !important;
         align-items: center;
         justify-content: center;
         left: 0;
@@ -170,6 +194,12 @@
         bottom: 0;
         position: sticky;
         z-index: 998;
+        padding-bottom: 10px;
+        background-color: rgb(244, 244, 244);
+    }
+
+    .mobilebasketcontent {
+        display: block;
     }
 
     .mobilebasket {
@@ -183,7 +213,6 @@
         border-radius: 25px;
         justify-content: center;
         color: white;
-
     }
 
     .dialog-bg-mobile {
@@ -211,12 +240,12 @@
         height: auto;
         line-height: 20px;
         max-height: calc(100% - 160px);
-        max-width: 600px;
+        max-width: 90%;
         min-height: 40%;
         opacity: 1;
         position: relative;
         text-rendering: optimizelegibility;
-        width: 600px;
+        width: 800px;
         justify-content: space-between;
         align-items: center;
         flex-direction: column;
@@ -254,7 +283,7 @@
     .order {
         background-color: #2196F3;
         height: 50px;
-        width: 60%;
+        width: 90%;
         color: white;
         display: flex;
         align-items: center;
@@ -271,18 +300,32 @@
 
     .mobilebasketproduct {
         padding: 20px;
+        width: 100%;
+    }
+
+    .mobilepriceinfoblock {
+        width: 65%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .priceinfo {
         display: flex;
         margin-top: 0 !important;
-        width: 94%;
-        justify-content: space-around;
         margin-bottom: 10px;
+    }
 
+    .mobilepriceinfoblock span {
+        font-size: 14px;
     }
 
     .addproduct {
         margin-top: 0px !important;
+        align-items: stretch;
+    }
+
+    .addproduct img {
+        cursor: pointer;
     }
 }

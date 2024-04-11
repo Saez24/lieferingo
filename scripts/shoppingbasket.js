@@ -1,32 +1,35 @@
 
-let storageBasket = JSON.parse(localStorage.getItem("shoppingBasket")) || [];
+let storageBasket = JSON.parse(localStorage.getItem("storageBasket")) || [];
 let i = 0;
 let lotalPrice = 0;
 let deliveryPricePerItem = 0.90;
 
 function renderBasket() {
     if (storageBasket.length === 0) {
-        let basketContent = document.getElementById('basketcontent');
-        basketContent.innerHTML = '<h5>Bitte füllen Sie den Warenkorb.</h5>';
+        let basketContent = document.getElementById('basketproduct');
+        basketContent.innerHTML = '<h4>Bitte füllen Sie den Warenkorb.</h4>';
+        document.getElementById('priceinfoblock').style.display = 'none';
     } else {
         let ingredientContent = document.getElementById('basketproduct');
         ingredientContent.innerHTML = '';
+        document.getElementById('priceinfoblock').style.display = 'flex';
+
         for (let i = 0; i < storageBasket.length; i++) {
             let basket = storageBasket[i];
 
             ingredientContent.innerHTML += /*html*/`
                 <div class="products"> 
-                    <span><u><b>${basket['pizza']}</b></u> </span><b id="productprice_${i}">${basket['price']}</b>
+                    <span><u><b>${basket['pizza']}</b></u> </span><b id="productprice_${i}">${basket['price']}</b><img onclick="deleteProduct()" height="18" src="./img/logos/trash.png" alt="">
                 </div>
                 <div class="productsdescription"><span>${basket['size']} ø ${basket['sizeCm']} cm ${basket['preporation']} ${basket['dough']} ${basket['extras'].join(', ')}</span>
                 </div>
                 <div class="addproduct">
-                    <svg onclick="plusQuantityBasket(${i})" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                    <svg onclick="plusQuantityBasket(${i})" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
                     </svg>
-                    <h5 id=quantityBasket>${basket['quantity']}</h5>
-                    <svg onclick="minusQuantityBasket(${i})" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                    <h4 id=quantityBasket>${basket['quantity']}</h4>
+                    <svg onclick="minusQuantityBasket(${i})" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
                         <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
                     </svg>
@@ -39,19 +42,19 @@ function renderBasket() {
 };
 
 function loadBasket() {
-    let storageBasket = localStorage.getItem("shoppingbasket");
+    let storageBasket = localStorage.getItem("storageBasket");
     if (storageBasket) {
         shoppingBasket = JSON.parse(storageBasket);
     }
 };
 
 function updateLocalStorage() {
-    localStorage.setItem('shoppingBasket', JSON.stringify(storageBasket));
+    localStorage.setItem('storageBasket', JSON.stringify(storageBasket));
 };
 
 function plusQuantityBasket(i) {
     let basket = storageBasket[i];
-    if (basket.quantity < 5) {
+    if (basket.quantity < 10) {
         basket.quantity++;
         updateLocalStorage();
         updateBasketPrice();
@@ -72,10 +75,11 @@ function minusQuantityBasket(i) {
     renderBasket();
 };
 
-function deleteProduct(index) {
-    storageBasket.splice(index, 1);
-    localStorage.setItem('shoppingBasket', JSON.stringify(storageBasket));
+function deleteProduct(i) {
+    storageBasket.splice(i, 1);
+    localStorage.setItem('storageBasket', JSON.stringify(storageBasket));
     renderBasket();
+    renderBasketMobile();
 };
 
 function updateBasketPrice() {
@@ -114,33 +118,37 @@ function updateBasketPrice() {
 function loadBasketMobile() {
     let storageBasket = localStorage.getItem("shoppingbasketmobile");
     if (storageBasket) {
-        shoppingBasket = JSON.parse(storageBasket);
+        storageBasket = JSON.parse(storageBasket);
     }
 };
 
 function renderBasketMobile() {
     if (storageBasket.length === 0) {
-        let mobilebasketContent = document.getElementById('shoppingbasketmobile');
+        let ingredientContent = document.getElementById('mobilebasketproduct');
+        ingredientContent.innerHTML = '';
+        let mobilebasketContent = document.getElementById('checkoutmobile');
         mobilebasketContent.innerHTML = '<h5>Bitte füllen Sie den Warenkorb.</h5>';
+        document.getElementById('mobilepriceinfoblock').style.display = 'none';
     } else {
         let ingredientContent = document.getElementById('mobilebasketproduct');
         ingredientContent.innerHTML = '';
+        document.getElementById('mobilepriceinfoblock').style.display = 'flex';
         for (let i = 0; i < storageBasket.length; i++) {
             let basket = storageBasket[i];
 
             ingredientContent.innerHTML += /*html*/`
                 <div class="products"> 
-                    <span><u><b>${basket['pizza']}</b></u> </span><b id="mobilebasketproductprice_${i}">${basket['price']}</b>
+                    <span><u><b>${basket['pizza']}</b></u> </span><b id="mobilebasketproductprice_${i}">${basket['price']}</b><img onclick="deleteProduct()" src="./img/logos/trash.png" alt="">
                 </div>
                 <div class="productsdescription"><span>${basket['size']} ø ${basket['sizeCm']} cm ${basket['preporation']} ${basket['dough']} ${basket['extras'].join(', ')}</span>
                 </div>
                 <div class="addproduct">
-                    <svg onclick="plusQuantityBasketMobile(${i})" xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                    <svg onclick="plusQuantityBasketMobile(${i})" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
                     </svg>
-                    <h6 id=quantityBasketMobile>${basket['quantity']}</h6>
-                    <svg onclick="minusQuantityBasketMobile(${i})" xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                    <h4 id=quantityBasketMobile>${basket['quantity']}</h4>
+                    <svg onclick="minusQuantityBasketMobile(${i})" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
                         <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
                     </svg>
@@ -152,14 +160,9 @@ function renderBasketMobile() {
     }
 };
 
-function deleteTextMobilebasket() {
-    let mobilebasketContentButton = document.getElementById('checkoutmobile')
-    mobilebasketContentButton.innerHTML = '';
-}
-
 function plusQuantityBasketMobile(i) {
     let basket = storageBasket[i];
-    if (basket.quantity < 5) {
+    if (basket.quantity < 15) {
         basket.quantity++;
         updateLocalStorage();
         updateBasketPriceMobile();
@@ -177,7 +180,7 @@ function minusQuantityBasketMobile(i) {
         (basket.quantity < 1)
         deleteProduct();
     }
-    renderBasketMobile();
+    renderBasketMobile()
 };
 
 function updateBasketPriceMobile() {

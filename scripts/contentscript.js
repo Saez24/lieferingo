@@ -12,22 +12,15 @@ let pizzaData = [
     }
 ];
 
-let shoppingBasket = [];
 let quantity = 1;
-
-function refreshPage() {
-    window.location.reload();
-};
 
 function render() {
     let foodContent = document.getElementById('foodcontent');
     foodContent.innerHTML = '';
-
     pizzaData.forEach(food => {
         let pizzas = food['pizza'].split(', ');
         let selectionText = food['selectiontext'];
         let pizzaPrice = food['price'].split(", ")[0].trim().replace('.', ',');
-
         pizzas.forEach((pizza, index) => {
             foodContent.innerHTML += /*html*/`
                 <div onclick="openDialog(${index})" class="foodcontent">
@@ -44,6 +37,7 @@ function openDialog(index) {
     let selectedPizza = getPizzaByIndex(index);
     loadContentToDialog(selectedPizza);
     document.getElementById('dialog').classList.remove('d_none');
+    document.getElementById('mobilebasketbottom').style.display = 'none';
 };
 
 function getPizzaByIndex(index) {
@@ -95,6 +89,7 @@ function closeDialogAndSave() {
 
 function closeDialog() {
     document.getElementById('dialog').classList.add('d_none');
+    document.getElementById('mobilebasketbottom').style.display = 'flex';
 };
 
 function generateExtrasCheckboxes() {
@@ -135,7 +130,7 @@ function updatePrice() {
 };
 
 function plusQuantity() {
-    if (quantity < 5) {
+    if (quantity < 10) {
         quantity++;
         updatePrice();
         document.getElementById('quantity').textContent = quantity;
@@ -155,16 +150,13 @@ function changeQuantity(newQuantity) {
     document.getElementById('quantity').textContent = quantity;
 };
 
-function saveSelection() {
+function capturePizzaSelection() {
     let selectedPizza = document.getElementById('pizzaname').innerText;
     let selectedSizeIndex = document.getElementById('sizeselection').value;
     let selectedSize = pizzaData[0]['size'].split(', ')[selectedSizeIndex];
     let selectedDough = document.getElementById('dough').checked ? 'mit Dinkel-Vollkornteig (mit Olivenöl)' : '';
     let selectedPreparationIndex = document.getElementById('preparation').value;
     let selectedPreparation = pizzaData[0]['cut'].split(', ')[selectedPreparationIndex];
-    let shoppingBasket = JSON.parse(localStorage.getItem('shoppingBasket')) || [];
-    let selectedPrice = document.getElementById('selectedPrice').innerText;
-    let selectedQuantity = document.getElementById('quantity').innerText;
     let selectedSizeCmIndex = document.getElementById('sizeselection').value;
     let selectedSizeCm = pizzaData[0]['sizecm'].split(', ')[selectedSizeCmIndex];
     let selectedExtras = [];
@@ -174,22 +166,51 @@ function saveSelection() {
             selectedExtras.push(checkbox.parentElement.innerText.trim());
         }
     });
-    let selection = {
-        pizza: selectedPizza,
-        size: selectedSize,
-        dough: selectedDough,
-        preporation: selectedPreparation,
-        price: selectedPrice,
-        extras: selectedExtras,
-        quantity: selectedQuantity,
-        sizeCm: selectedSizeCm
+
+    return createPizzaSelectionObject(selectedPizza, selectedSize, selectedDough, selectedPreparation, selectedExtras, selectedSizeCm);
+};
+
+function createPizzaSelectionObject(pizza, size, dough, preparation, extras, sizeCm) {
+    return {
+        pizza: pizza,
+        size: size,
+        dough: dough,
+        preporation: preparation,
+        extras: extras,
+        sizeCm: sizeCm
     };
+};
 
-    shoppingBasket.push(selection);
+function calculatePricePerItem(selectedPrice, selectedQuantity) {
+    return selectedQuantity !== 0 ? selectedPrice / selectedQuantity : 0;
+};
 
-    localStorage.setItem('shoppingBasket', JSON.stringify(shoppingBasket));
+function capturePriceAndQuantity() {
+    let selectedPrice = parseFloat(document.getElementById('selectedPrice').innerText.replace(',', '.'));
+    let selectedQuantity = parseInt(document.getElementById('quantity').innerText);
+    return { selectedPrice, selectedQuantity };
+};
 
+function formatPriceString(pricePerItem) {
+    return pricePerItem.toFixed(2).replace('.', ',');
+};
+
+function saveSelectionToStorage(selection) {
+    storageBasket.push(selection);
+    localStorage.setItem('storageBasket', JSON.stringify(storageBasket));
     resetDialog();
+};
+
+function saveSelection() {
+    let { selectedPrice, selectedQuantity } = capturePriceAndQuantity();
+    let pricePerItem = calculatePricePerItem(selectedPrice, selectedQuantity);
+    let pricePerItemString = formatPriceString(pricePerItem);
+    let selection = {
+        ...capturePizzaSelection(),
+        price: pricePerItemString,
+        quantity: selectedQuantity
+    };
+    saveSelectionToStorage(selection);
 };
 
 function resetDialog() {
@@ -208,8 +229,10 @@ function resetDialog() {
 
 function openDialogMobile() {
     document.getElementById('shoppingbasketmobile').classList.remove('d_none-mobile');
+    document.getElementById('mobilebasketbottom').style.display = 'none';
 };
 
 function closeDialogMobile() {
     document.getElementById('shoppingbasketmobile').classList.add('d_none-mobile');
+    document.getElementById('mobilebasketbottom').style.display = 'flex';
 };
