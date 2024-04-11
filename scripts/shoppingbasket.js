@@ -183,9 +183,20 @@ function minusQuantityBasketMobile(i) {
     renderBasketMobile()
 };
 
-function updateBasketPriceMobile() {
+function calculateBasketPrice() {
     let basketPrice = 0;
 
+    for (let i = 0; i < storageBasket.length; i++) {
+        let basket = storageBasket[i];
+        let productPrice = parseFloat(basket['price'].replace(',', '.'));
+        let quantity = basket['quantity'];
+        let totalPriceForProduct = productPrice * quantity;
+        basketPrice += totalPriceForProduct;
+    }
+    return basketPrice;
+};
+
+function updateProductPricesInBasket() {
     for (let i = 0; i < storageBasket.length; i++) {
         let basket = storageBasket[i];
         let productPrice = parseFloat(basket['price'].replace(',', '.'));
@@ -195,10 +206,12 @@ function updateBasketPriceMobile() {
         if (productPriceElement) {
             productPriceElement.innerHTML = `${totalPriceForProduct.toFixed(2).replace('.', ',')} €`;
         }
-        basketPrice += totalPriceForProduct;
     }
-    let deliveryPrice = deliveryPricePerItem;
+};
+
+function updateBasketPrices(basketPrice, deliveryPrice) {
     let totalPrice = basketPrice + deliveryPrice;
+
     let produktPrice = document.getElementById('mobilebasketprice');
     produktPrice.innerHTML = `${basketPrice.toFixed(2).replace('.', ',')} €`;
 
@@ -209,11 +222,22 @@ function updateBasketPriceMobile() {
     if (endPrice) {
         endPrice.innerHTML = `${totalPrice.toFixed(2).replace('.', ',')} €`;
     }
+};
+
+function updateBasketPriceMobile() {
+    let basketPrice = calculateBasketPrice();
+    let deliveryPrice = deliveryPricePerItem;
+    let totalPrice = basketPrice + deliveryPrice;
+
+    updateProductPricesInBasket();
+    updateBasketPrices(basketPrice, deliveryPrice);
+
     let checkoutElement = document.getElementById('checkoutmobile');
     if (checkoutElement) {
         checkoutElement.innerHTML = `Warenkorb ${totalPrice.toFixed(2).replace('.', ',')} €`;
     }
 };
+
 
 
 

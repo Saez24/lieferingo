@@ -54,9 +54,12 @@ function getPizzaByIndex(index) {
     }
 };
 
-function loadContentToDialog(pizza) {
+function updatePizzaNameAndPrice(pizza) {
     document.getElementById('pizzaname').innerText = pizza.name;
     document.getElementById('priceheader').innerText = "ab " + pizza.price + " €";
+};
+
+function populateSizeSelection() {
     let sizeOptionsHTML = '';
     let sizes = pizzaData[0]['size'].split(', ');
     let sizeCMs = pizzaData[0]['sizecm'].split(', ');
@@ -68,7 +71,9 @@ function loadContentToDialog(pizza) {
         `;
     }
     document.getElementById('sizeselection').innerHTML = sizeOptionsHTML;
+};
 
+function populatePreparationSelection() {
     let preparationOptionsHTML = '';
     let cuts = pizzaData[0]['cut'].split(', ');
     for (let i = 0; i < cuts.length; i++) {
@@ -77,6 +82,12 @@ function loadContentToDialog(pizza) {
         `;
     }
     document.getElementById('preparation').innerHTML = preparationOptionsHTML;
+};
+
+function loadContentToDialog(pizza) {
+    updatePizzaNameAndPrice(pizza);
+    populateSizeSelection();
+    populatePreparationSelection();
     generateExtrasCheckboxes();
     updatePrice();
 };
@@ -108,15 +119,21 @@ function generateExtrasCheckboxes() {
     }
 };
 
-function updatePrice() {
+function calculateSelectedPrice() {
     let selectedSizeIndex = document.getElementById('sizeselection').value;
     let selectedPrice = parseFloat(pizzaData[0]['price'].split(', ')[selectedSizeIndex]);
+    return selectedPrice;
+};
 
+function calculateDoughPrice() {
     let doughCheckbox = document.getElementById('dough');
-    let doughPrice = 0;
     if (doughCheckbox.checked) {
-        doughPrice = parseFloat(pizzaData[0]['dough']);
+        return parseFloat(pizzaData[0]['dough']);
     }
+    return 0;
+};
+
+function calculateExtrasPrice() {
     let extrasCheckboxes = document.getElementsByClassName('extras');
     let extrasPrice = 0;
     for (let i = 0; i < extrasCheckboxes.length; i++) {
@@ -124,9 +141,20 @@ function updatePrice() {
             extrasPrice += parseFloat(pizzaData[0]['extrasprice']);
         }
     }
+    return extrasPrice;
+};
 
+function updateTotalPrice(selectedPrice, doughPrice, extrasPrice, quantity) {
     let totalPrice = (selectedPrice + doughPrice + extrasPrice) * quantity;
     document.getElementById('selectedPrice').innerText = totalPrice.toFixed(2).replace('.', ',') + " €";
+};
+
+function updatePrice() {
+    let selectedPrice = calculateSelectedPrice();
+    let doughPrice = calculateDoughPrice();
+    let extrasPrice = calculateExtrasPrice();
+    let quantity = parseInt(document.getElementById('quantity').innerText);
+    updateTotalPrice(selectedPrice, doughPrice, extrasPrice, quantity);
 };
 
 function plusQuantity() {
@@ -160,13 +188,11 @@ function capturePizzaSelection() {
     let selectedSizeCmIndex = document.getElementById('sizeselection').value;
     let selectedSizeCm = pizzaData[0]['sizecm'].split(', ')[selectedSizeCmIndex];
     let selectedExtras = [];
-
     document.querySelectorAll('.extras').forEach(checkbox => {
         if (checkbox.checked) {
             selectedExtras.push(checkbox.parentElement.innerText.trim());
         }
     });
-
     return createPizzaSelectionObject(selectedPizza, selectedSize, selectedDough, selectedPreparation, selectedExtras, selectedSizeCm);
 };
 
@@ -218,11 +244,9 @@ function resetDialog() {
     document.getElementById('sizeselection').selectedIndex = 0;
     document.getElementById('preparation').selectedIndex = 0;
     document.getElementById('dough').checked = false;
-
     document.querySelectorAll('extras').forEach(checkbox => {
         checkbox.checked = false;
     });
-
     quantity = 1;
     document.getElementById('quantity').textContent = '1';
 };

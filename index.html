@@ -10,7 +10,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./styles/shoppingbasket.css">
     <link rel="stylesheet" href="./styles/headerfooter.css">
-    <script src="./scripts/contentscript.js"></script>
+    <script src="./scripts/script.js"></script>
     <script src="./scripts/shoppingbasket.js"></script>
     <title>Lieferingo</title>
 </head>
@@ -94,10 +94,12 @@
                         </div>
 
                     </div>
-                    <div onclick="localStorage.clear()" class="checkoutsum"> <a href="orderconfirmation.html"><b
-                                id="checkout">Bezahlen
-                                (18,00 €)</b></a>
-                    </div>
+                    <a class="checkoutsum" href="orderconfirmation.html">
+                        <div onclick="localStorage.clear()"> <b id="checkout">Bezahlen
+                                (18,00 €)</b>
+
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -189,11 +191,11 @@
                             <span id="mobiletotalprice"><b></b></span>
                         </div>
                     </div>
-                    <div onclick="closeDialogMobile(), localStorage.clear()" class="order">
-                        <a href="orderconfirmation.html">
+                    <a class="order" href="orderconfirmation.html">
+                        <div onclick="closeDialogMobile(), localStorage.clear()">
                             <h5>Jetzt Bestellen</h5>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
