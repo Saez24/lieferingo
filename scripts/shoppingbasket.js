@@ -51,8 +51,6 @@ function loadHtml(basket, i) {
             `;
 };
 
-
-
 function loadBasket() {
     let storageBasket = localStorage.getItem("storageBasket");
     if (storageBasket) {
