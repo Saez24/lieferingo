@@ -33,7 +33,7 @@ function renderNonEmptyBasket() {
 function loadHtml(basket, i) {
     return `
                 <div class="products"> 
-                    <span><u><b>${basket['pizza']}</b></u> </span><b id="productprice_${i}">${basket['price']}</b><img onclick="deleteProduct()" src="./img/logos/trash.png" alt="">
+                    <span><u><b>${basket['pizza']}</b></u> </span><b id="productprice_${i}">${basket['price']}</b><img onclick="deleteProduct(${i})" src="./img/logos/trash.png" alt="">
                 </div>
                 <div class="productsdescription"><span>${basket['size']} ø ${basket['sizeCm']} cm ${basket['preporation']} ${basket['dough']} ${basket['extras'].join(', ')}</span>
                 </div>
@@ -92,8 +92,9 @@ function deleteProduct(i) {
     localStorage.setItem('storageBasket', JSON.stringify(storageBasket));
     renderBasket();
     renderBasketMobile();
+};
 
-}; function calculateBasketPrice() {
+function calculateBasketPrice() {
     let basketPrice = 0;
 
     for (let i = 0; i < storageBasket.length; i++) {
@@ -186,7 +187,7 @@ function renderNonEmptyBasketMobile() {
 function loadHtmlMobile(basket, i) {
     return `
                 <div class="products"> 
-                    <span><u><b>${basket['pizza']}</b></u> </span><b id="mobilebasketproductprice_${i}">${basket['price']}</b><img onclick="deleteProduct()" src="./img/logos/trash.png" alt="">
+                    <span><u><b>${basket['pizza']}</b></u> </span><b id="mobilebasketproductprice_${i}">${basket['price']}</b><img onclick="deleteProduct(${i})" src="./img/logos/trash.png" alt="">
                 </div>
                 <div class="productsdescription"><span>${basket['size']} ø ${basket['sizeCm']} cm ${basket['preporation']} ${basket['dough']} ${basket['extras'].join(', ')}</span>
                 </div>
