@@ -6,20 +6,34 @@ let deliveryPricePerItem = 0.90;
 
 function renderBasket() {
     if (storageBasket.length === 0) {
-        let basketContent = document.getElementById('basketproduct');
-        basketContent.innerHTML = '<h4>Bitte füllen Sie den Warenkorb.</h4>';
-        document.getElementById('priceinfoblock').style.display = 'none';
+        renderEmptyBasket();
     } else {
-        let ingredientContent = document.getElementById('basketproduct');
-        ingredientContent.innerHTML = '';
-        document.getElementById('priceinfoblock').style.display = 'flex';
+        renderNonEmptyBasket();
+    }
+};
 
-        for (let i = 0; i < storageBasket.length; i++) {
-            let basket = storageBasket[i];
+function renderEmptyBasket() {
+    let ingredientContent = document.getElementById('basketproduct');
+    ingredientContent.innerHTML = '<h4>Bitte füllen Sie den Warenkorb.</h4>';
+    document.getElementById('priceinfoblock').style.display = 'none';
+};
 
-            ingredientContent.innerHTML += /*html*/`
+function renderNonEmptyBasket() {
+    let ingredientContent = document.getElementById('basketproduct');
+    ingredientContent.innerHTML = '';
+    document.getElementById('priceinfoblock').style.display = 'flex';
+    for (let i = 0; i < storageBasket.length; i++) {
+        let basket = storageBasket[i];
+        ingredientContent.innerHTML += loadHtml(basket, i)
+    }
+    loadBasket();
+    updateBasketPrice();
+};
+
+function loadHtml(basket, i) {
+    return `
                 <div class="products"> 
-                    <span><u><b>${basket['pizza']}</b></u> </span><b id="productprice_${i}">${basket['price']}</b><img onclick="deleteProduct()" height="18" src="./img/logos/trash.png" alt="">
+                    <span><u><b>${basket['pizza']}</b></u> </span><b id="productprice_${i}">${basket['price']}</b><img onclick="deleteProduct()" src="./img/logos/trash.png" alt="">
                 </div>
                 <div class="productsdescription"><span>${basket['size']} ø ${basket['sizeCm']} cm ${basket['preporation']} ${basket['dough']} ${basket['extras'].join(', ')}</span>
                 </div>
@@ -35,11 +49,9 @@ function renderBasket() {
                     </svg>
                 </div>
             `;
-        }
-        loadBasket();
-        updateBasketPrice();
-    }
 };
+
+
 
 function loadBasket() {
     let storageBasket = localStorage.getItem("storageBasket");
@@ -80,11 +92,21 @@ function deleteProduct(i) {
     localStorage.setItem('storageBasket', JSON.stringify(storageBasket));
     renderBasket();
     renderBasketMobile();
-};
 
-function updateBasketPrice() {
+}; function calculateBasketPrice() {
     let basketPrice = 0;
 
+    for (let i = 0; i < storageBasket.length; i++) {
+        let basket = storageBasket[i];
+        let productPrice = parseFloat(basket['price'].replace(',', '.'));
+        let quantity = basket['quantity'];
+        let totalPriceForProduct = productPrice * quantity;
+        basketPrice += totalPriceForProduct;
+    }
+    return basketPrice;
+};
+
+function updateProductPricesInBasket() {
     for (let i = 0; i < storageBasket.length; i++) {
         let basket = storageBasket[i];
         let productPrice = parseFloat(basket['price'].replace(',', '.'));
@@ -94,10 +116,12 @@ function updateBasketPrice() {
         if (productPriceElement) {
             productPriceElement.innerHTML = `${totalPriceForProduct.toFixed(2).replace('.', ',')} €`;
         }
-        basketPrice += totalPriceForProduct;
     }
-    let deliveryPrice = deliveryPricePerItem;
+};
+
+function updateBasketPrices(basketPrice, deliveryPrice) {
     let totalPrice = basketPrice + deliveryPrice;
+
     let produktPrice = document.getElementById('basketprice');
     produktPrice.innerHTML = `${basketPrice.toFixed(2).replace('.', ',')} €`;
 
@@ -108,10 +132,19 @@ function updateBasketPrice() {
     if (endPrice) {
         endPrice.innerHTML = `${totalPrice.toFixed(2).replace('.', ',')} €`;
     }
+};
+
+function updateBasketPrice() {
+    let basketPrice = calculateBasketPrice();
+    let deliveryPrice = deliveryPricePerItem;
+    let totalPrice = basketPrice + deliveryPrice;
+
+    updateProductPricesInBasket();
+    updateBasketPrices(basketPrice, deliveryPrice);
 
     let checkoutElement = document.getElementById('checkout');
     if (checkoutElement) {
-        checkoutElement.innerHTML = `Jetzt Bestellen ${totalPrice.toFixed(2).replace('.', ',')} €`;
+        checkoutElement.innerHTML = `Jetzt bestellen ${totalPrice.toFixed(2).replace('.', ',')} €`;
     }
 };
 
@@ -124,19 +157,34 @@ function loadBasketMobile() {
 
 function renderBasketMobile() {
     if (storageBasket.length === 0) {
-        let ingredientContent = document.getElementById('mobilebasketproduct');
-        ingredientContent.innerHTML = '';
-        let mobilebasketContent = document.getElementById('checkoutmobile');
-        mobilebasketContent.innerHTML = '<h5>Bitte füllen Sie den Warenkorb.</h5>';
-        document.getElementById('mobilepriceinfoblock').style.display = 'none';
+        renderEmptyBasketMobile();
     } else {
-        let ingredientContent = document.getElementById('mobilebasketproduct');
-        ingredientContent.innerHTML = '';
-        document.getElementById('mobilepriceinfoblock').style.display = 'flex';
-        for (let i = 0; i < storageBasket.length; i++) {
-            let basket = storageBasket[i];
+        renderNonEmptyBasketMobile();
+    }
+};
 
-            ingredientContent.innerHTML += /*html*/`
+function renderEmptyBasketMobile() {
+    let ingredientContent = document.getElementById('mobilebasketproduct');
+    ingredientContent.innerHTML = '';
+    let mobilebasketContent = document.getElementById('checkoutmobile');
+    mobilebasketContent.innerHTML = '<h5>Bitte füllen Sie den Warenkorb.</h5>';
+    document.getElementById('mobilepriceinfoblock').style.display = 'none';
+};
+
+function renderNonEmptyBasketMobile() {
+    let ingredientContent = document.getElementById('mobilebasketproduct');
+    ingredientContent.innerHTML = '';
+    document.getElementById('mobilepriceinfoblock').style.display = 'flex';
+    for (let i = 0; i < storageBasket.length; i++) {
+        let basket = storageBasket[i];
+        ingredientContent.innerHTML += loadHtmlMobile(basket, i)
+    }
+    loadBasketMobile();
+    updateBasketPriceMobile();
+};
+
+function loadHtmlMobile(basket, i) {
+    return `
                 <div class="products"> 
                     <span><u><b>${basket['pizza']}</b></u> </span><b id="mobilebasketproductprice_${i}">${basket['price']}</b><img onclick="deleteProduct()" src="./img/logos/trash.png" alt="">
                 </div>
@@ -154,10 +202,6 @@ function renderBasketMobile() {
                     </svg>
                 </div>
             `;
-        }
-        loadBasketMobile();
-        updateBasketPriceMobile();
-    }
 };
 
 function plusQuantityBasketMobile(i) {
@@ -183,7 +227,7 @@ function minusQuantityBasketMobile(i) {
     renderBasketMobile()
 };
 
-function calculateBasketPrice() {
+function calculateBasketPriceMobile() {
     let basketPrice = 0;
 
     for (let i = 0; i < storageBasket.length; i++) {
@@ -196,20 +240,20 @@ function calculateBasketPrice() {
     return basketPrice;
 };
 
-function updateProductPricesInBasket() {
+function updateProductPricesInBasketMobile() {
     for (let i = 0; i < storageBasket.length; i++) {
         let basket = storageBasket[i];
         let productPrice = parseFloat(basket['price'].replace(',', '.'));
         let quantity = basket['quantity'];
         let totalPriceForProduct = productPrice * quantity;
-        let productPriceElement = document.getElementById(`mobileproductprice_${i}`);
+        let productPriceElement = document.getElementById(`mobilebasketproductprice_${i}`);
         if (productPriceElement) {
             productPriceElement.innerHTML = `${totalPriceForProduct.toFixed(2).replace('.', ',')} €`;
         }
     }
 };
 
-function updateBasketPrices(basketPrice, deliveryPrice) {
+function updateBasketPricesMobile(basketPrice, deliveryPrice) {
     let totalPrice = basketPrice + deliveryPrice;
 
     let produktPrice = document.getElementById('mobilebasketprice');
@@ -225,12 +269,12 @@ function updateBasketPrices(basketPrice, deliveryPrice) {
 };
 
 function updateBasketPriceMobile() {
-    let basketPrice = calculateBasketPrice();
+    let basketPrice = calculateBasketPriceMobile();
     let deliveryPrice = deliveryPricePerItem;
     let totalPrice = basketPrice + deliveryPrice;
 
-    updateProductPricesInBasket();
-    updateBasketPrices(basketPrice, deliveryPrice);
+    updateProductPricesInBasketMobile();
+    updateBasketPricesMobile(basketPrice, deliveryPrice);
 
     let checkoutElement = document.getElementById('checkoutmobile');
     if (checkoutElement) {

@@ -222,7 +222,21 @@ function formatPriceString(pricePerItem) {
 };
 
 function saveSelectionToStorage(selection) {
-    storageBasket.push(selection);
+    const existingPizzaIndex = storageBasket.findIndex(item => {
+        return (
+            item.pizza === selection.pizza &&
+            item.size === selection.size &&
+            item.dough === selection.dough &&
+            item.preporation === selection.preporation &&
+            item.sizeCm === selection.sizeCm &&
+            JSON.stringify(item.extras) === JSON.stringify(selection.extras)
+        );
+    });
+    if (existingPizzaIndex !== -1) {
+        storageBasket[existingPizzaIndex].quantity += selection.quantity;
+    } else {
+        storageBasket.push(selection);
+    }
     localStorage.setItem('storageBasket', JSON.stringify(storageBasket));
     resetDialog();
 };
